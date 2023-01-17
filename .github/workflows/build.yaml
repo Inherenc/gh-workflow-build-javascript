@@ -28,7 +28,7 @@ jobs:
           planton_cloud_service_client_secret: ${{ secrets.PLANTON_CLOUD_SERVICE_CLIENT_SECRET }}
           planton_cloud_artifact_store_id: ${{ inputs.PLANTON_CLOUD_ARTIFACT_STORE_ID }}
       - name: zip artifacts
-        run: zip build.zip build/* build/.next -r
+        run: zip build.zip build/* build/.next build/node_modules/.bin -r
       - name: upload artifacts
         uses: actions/upload-artifact@v3
         with:
