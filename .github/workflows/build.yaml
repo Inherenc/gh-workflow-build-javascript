@@ -27,9 +27,11 @@ jobs:
           planton_cloud_service_client_id: ${{ secrets.PLANTON_CLOUD_SERVICE_CLIENT_ID }}
           planton_cloud_service_client_secret: ${{ secrets.PLANTON_CLOUD_SERVICE_CLIENT_SECRET }}
           planton_cloud_artifact_store_id: ${{ inputs.PLANTON_CLOUD_ARTIFACT_STORE_ID }}
+      - name: zip artifacts
+        run: zip build.zip build/* -r
       - name: upload artifacts
         uses: actions/upload-artifact@v3
         with:
-          name: build-directory
-          path: build/
+          name: build-zip
+          path: build.zip
           if-no-files-found: ignore
