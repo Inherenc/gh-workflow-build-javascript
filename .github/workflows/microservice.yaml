@@ -56,7 +56,10 @@ jobs:
           name: build-zip
           path: build.zip
       - name: unzip artifacts
-        run: unzip build.zip
+        run: |
+          pwd
+          ls -al
+          unzip build.zip
       - uses: plantoncloud/gh-action-build-docker@main
         with:
           planton_cloud_service_cli_env: ${{ inputs.PLANTON_CLOUD_SERVICE_CLI_ENV }}
