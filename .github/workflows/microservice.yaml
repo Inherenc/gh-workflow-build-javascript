@@ -30,6 +30,10 @@ jobs:
     name: javscript build
     steps:
       - uses: actions/checkout@v3
+      # https://github.com/vercel/next.js/issues/38330#issuecomment-1178913616
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 17
       - uses: plantoncloud/gh-action-build-javascript@main
         with:
           planton_cloud_service_cli_env: ${{ inputs.PLANTON_CLOUD_SERVICE_CLI_ENV }}
