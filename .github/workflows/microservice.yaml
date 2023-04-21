@@ -38,6 +38,7 @@ jobs:
         run: |
           corepack enable
           corepack prepare yarn@v3.2.3 --activate
+          yarn policies set-version v3.2.3
       - uses: actions/setup-node@v3
         with:
           node-version: 17
