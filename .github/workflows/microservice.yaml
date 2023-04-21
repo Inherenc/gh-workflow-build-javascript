@@ -34,6 +34,14 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 17
+      - name: setup yarn
+        run: |
+          corepack enable
+          corepack prepare yarn@v3.2.3 --activate
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 17
+          cache: yarn
       - uses: plantoncloud/gh-action-build-javascript@main
         with:
           planton_cloud_service_cli_env: ${{ inputs.PLANTON_CLOUD_SERVICE_CLI_ENV }}
