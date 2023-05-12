@@ -50,12 +50,12 @@ jobs:
           planton_cloud_service_client_secret: ${{ secrets.PLANTON_CLOUD_SERVICE_CLIENT_SECRET }}
           planton_cloud_artifact_store_id: ${{ inputs.PLANTON_CLOUD_ARTIFACT_STORE_ID }}
       - name: zip artifacts
-        run: zip build.zip build/* build/.next build/node_modules/.bin -r
+        run: zip -r pc_artifacts.zip pc_artifacts/
       - name: upload artifacts
         uses: actions/upload-artifact@v3
         with:
           name: build-zip
-          path: build.zip
+          path: pc_artifacts.zip
           if-no-files-found: error
 
   build-image:
@@ -72,7 +72,7 @@ jobs:
         run: |
           pwd
           ls -al
-          unzip build.zip
+          unzip pc_artifacts.zip
       - uses: plantoncloud/gh-action-build-docker@main
         with:
           planton_cloud_service_cli_env: ${{ inputs.PLANTON_CLOUD_SERVICE_CLI_ENV }}
